@@ -9,7 +9,7 @@ WORKDIR /dist/src/app
 # Copy files to virtual directory
 COPY angularProject/package.json .
 # Run command in Virtual directory
-#RUN npm cache clean --force
+RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
 RUN npm install
 COPY . .
