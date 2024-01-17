@@ -9,7 +9,7 @@ pipeline {
                     checkout scm
 
                     // Build and compile the Node.js application
-                    sh 'docker build -t myproject-build -f Dockerfile .'
+                    sh 'docker build -t myproject-build -f angularProject/Dockerfile .'
                 }
             }
         }
@@ -18,7 +18,11 @@ pipeline {
             steps {
                 script {
                     // Run tests for the Node.js application (modify this command based on your testing framework)
-                    sh 'docker run --rm myproject-build npm test'
+                    sh 'docker stop myproject-build-test || true'
+                    sh 'docker container rm myproject-build-test || true'
+                    sh 'docker run --rm -d -p 8080:80 --name myproject-build-test myproject-build'
+                    sh 'curl http://localhost:8080'
+                    sh 'docker stop -t 10 myproject-build-test'
                 }
             }
         }
@@ -31,7 +35,7 @@ pipeline {
                     sh 'docker rm myproject-container || true'
 
                     // Run the Docker image and deploy the application
-                    sh 'docker run -p 8080:80 --name myproject-container myproject-build'
+                    sh 'docker run -p 80:80 --name myproject-container myproject-build'
                 }
             }
         }
