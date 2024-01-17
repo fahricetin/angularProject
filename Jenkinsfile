@@ -41,7 +41,7 @@ pipeline {
                     sh 'docker rm myproject-container || true'
 
                     // Run the Docker image and deploy the application
-                    sh 'docker run -p 80:80 --name myproject-container myproject-build'
+                    sh 'docker run -d -p 80:80 --name myproject-container myproject-build'
                 }
             }
         }
