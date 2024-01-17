@@ -9,10 +9,11 @@ WORKDIR /dist/src/app
 # Copy files to virtual directory
 # COPY package.json package-lock.json ./
 # Run command in Virtual directory
-RUN npm cache clean --force
+#RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
-COPY . .
+COPY package.json /dist/src/app/
 RUN npm install
+COPY . .
 RUN npm run build --prod
 
 
