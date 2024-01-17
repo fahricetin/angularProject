@@ -14,6 +14,7 @@ RUN npm cache clean --force
 RUN pwd
 COPY . .
 RUN cd /dist/src/app
+RUN ls -la
 RUN npm install
 RUN ls -la
 RUN npm run build --prod
