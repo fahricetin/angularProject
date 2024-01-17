@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'Vbox'
+    }
 
     stages {
         stage('Build') {
