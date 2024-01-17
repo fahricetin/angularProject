@@ -11,6 +11,7 @@ COPY angularProject/package.json .
 # Run command in Virtual directory
 RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
+RUN pwd
 RUN npm install
 COPY . .
 RUN npm run build --prod
