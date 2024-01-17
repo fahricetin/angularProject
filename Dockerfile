@@ -14,6 +14,7 @@ RUN npm cache clean --force
 RUN pwd
 RUN npm install
 COPY . .
+RUN ls -la
 RUN npm run build --prod
 
 
