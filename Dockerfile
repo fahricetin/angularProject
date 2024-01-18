@@ -10,9 +10,9 @@ WORKDIR /dist/src/app
 COPY package.json .
 # Run command in Virtual directory
 RUN npm cache clean --force
+RUN npm install --verbose
 # Copy files from local machine to virtual directory in docker image
 COPY . .
-RUN npm install --verbose
 RUN npm run build --prod
 
 
