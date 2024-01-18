@@ -11,6 +11,7 @@ WORKDIR /dist/src/app
 # Run command in Virtual directory
 RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
+RUN cd angularProject
 COPY . .
 RUN npm install
 RUN npm run build --prod
