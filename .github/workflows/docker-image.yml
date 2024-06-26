@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  image_name: myAngularProject
+  image_name: myangularproject
 
 jobs:
   build:
