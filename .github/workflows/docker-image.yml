@@ -1,7 +1,7 @@
 name: Docker Image CI
 
 on:
-  push:
+  workflow_dispatch:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
-        docker push mycontainer.azurecr.io/myapp:${{ github.sha }}
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/myapp:${{ github.sha }}
 
 
 
