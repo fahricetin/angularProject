@@ -8,6 +8,7 @@ on:
 
 env:
   image_name: myangularproject
+  version: v1.0
 
 jobs:
   build:
@@ -21,8 +22,8 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/$image_name:$(date +%s)
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/$image_name:$(date +%s)
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/$image_name:$version
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/$image_name:$version
 
 
 
