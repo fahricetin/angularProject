@@ -25,9 +25,8 @@ COPY --from=build /dist/src/app/dist/myproject /usr/share/nginx/html
 RUN pwd
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 RUN sed -i.bak 's/^user/#user/' /etc/nginx/nginx.conf
-#RUN sed -i.bak 's/listen\(.*\)80;/listen 8081;/' /etc/nginx/conf.d/default.conf
+RUN sed -i.bak 's/listen\(.*\)80;/listen 8080;/' /etc/nginx/conf.d/default.conf
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
-USER root
 # Exposing a port, here it means that inside the container 
-# the app will be using Port 80 while running
-EXPOSE 80
+# the app will be using Port 8080 while running
+EXPOSE 8080
