@@ -29,4 +29,4 @@ RUN sed -i.bak 's/listen\(.*\)80;/listen 8081;/' /etc/nginx/conf.d/default.conf
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
 # Exposing a port, here it means that inside the container 
 # the app will be using Port 80 while running
-EXPOSE 8081
+EXPOSE 80
