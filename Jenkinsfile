@@ -1,7 +1,6 @@
 pipeline {
     agent {
-        //label 'Vbox'
-        docker { image 'ubuntu' }
+        label 'any'
     }
 
     stages {
