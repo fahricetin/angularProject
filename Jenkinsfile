@@ -22,6 +22,25 @@ pipeline {
             }
         }
 
+        stage('Scan') {
+            steps {
+                // Scan the image | Input value from first script copied below, ''
+prismaCloudScanImage - Scan Prisma Cloud Images"
+                prismaCloudScanImage ca: '', cert: '', dockerAddress: 'unix:///var/run/docker.sock', ignoreImageBuildTime: true, image: 'myproject-build', key: '', logLevel: 'info', podmanPath: '', project: '', resultsFile: 'prisma-cloud-scan-results.json'
+            }
+        }
+
+         post {
+        always {
+            // The post section lets you run the publish step regardless of the scan results | Input value from second script copied below, "
+prismaCloudPublish - Publish Prisma Cloud analysis results."
+           prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
+        }
+    }
+         
+      
+      
+
         stage('Test') {
             steps {
                 script {
