@@ -12,6 +12,7 @@ pipeline {
 
                     // Build and compile the Node.js application
                     echo 'Bulid Project Starting'
+                    dh 'su root'
                     sh 'rm -rf angularProject'
                     sh 'git config --global http.sslverify false'
                     sh 'git clone https://github.com/fahricetin/angularProject.git'
