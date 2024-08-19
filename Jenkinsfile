@@ -1,6 +1,12 @@
 pipeline {
-    agent {
-        label 'agent1'
+     agent {
+        node {
+            label 'agent1' // The Jenkins agent (node) that should run this pipeline
+        }
+        docker {
+            image 'docker:24.0.5' // The Docker image to use
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Optional: Mount Docker socket for Docker-in-Docker (DinD)
+        }
     }
 
     stages {
