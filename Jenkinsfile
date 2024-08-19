@@ -28,7 +28,7 @@ pipeline {
                 prismaCloudScanImage ca: '', cert: '', dockerAddress: 'unix:///var/run/docker.sock', ignoreImageBuildTime: true, image: 'myproject-build', key: '', logLevel: 'info', podmanPath: '', project: '', resultsFile: 'prisma-cloud-scan-results.json'
             }
         }
-   post {
+     post {
         always {
             // The post section lets you run the publish step regardless of the scan results | Input value from second script copied below, "prismaCloudPublish - Publish Prisma Cloud analysis results."
            prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'
