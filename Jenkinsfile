@@ -1,6 +1,9 @@
 pipeline {
      agent {
-        label 'agent1' // Run this pipeline on a node labeled 'agent1'
+        docker {
+            image 'docker:24.0.5'
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Optional: Mount Docker socket
+        }
     }
 
     stages {
