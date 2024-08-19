@@ -8,18 +8,16 @@ pipeline {
             steps {
                 script {
                     // Checkout the source code from your version control system (e.g., Git)
-                    //checkout scm
-
+                    // checkout scm
                     // Build and compile the Node.js application
-                    docker.image('docker:24.0.5').inside {
-                      echo 'Bulid Project Starting'
-                      sh 'rm -rf angularProject'
-                      sh 'git config --global http.sslverify false'
-                      sh 'git clone https://github.com/fahricetin/angularProject.git'
-                      sh 'cd angularProject'
-                      sh 'docker build -t myproject-build -f angularProject/Dockerfile .'
-                      echo 'Docker Image Created Suceessfully'
-                    }
+                    
+                    echo 'Bulid Project Starting'
+                    sh 'rm -rf angularProject'
+                    sh 'git config --global http.sslverify false'
+                    sh 'git clone https://github.com/fahricetin/angularProject.git'
+                    sh 'cd angularProject'
+                    sh 'docker build -t myproject-build -f angularProject/Dockerfile .'
+                    echo 'Docker Image Created Suceessfully'
                 }
             }
         }
