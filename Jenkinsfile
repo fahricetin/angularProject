@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_HOST = 'unix:///var/run/docker.sock' // Pointing to the Docker socket
+    }
     stages {
         stage('Build') {
             steps {
