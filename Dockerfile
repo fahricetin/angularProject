@@ -10,8 +10,6 @@ WORKDIR /dist/src/app
 COPY package.json .
 # Run command in Virtual directory
 RUN npm cache clean --force
-RUN npm config list
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
 RUN curl https://registry.npmjs.org/@angular%2fanimations
 RUN npm install --verbose
 # Copy files from local machine to virtual directory in docker image
