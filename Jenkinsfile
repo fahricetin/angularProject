@@ -13,7 +13,7 @@ pipeline {
                     sh 'git config --global http.sslverify false'
                     sh 'git clone https://github.com/fahricetin/angularProject.git'
                     sh 'cd angularProject'
-                    sh 'docker build -t myproject-build -f angularProject/Dockerfile .'
+                    sh 'docker build --dns=8.8.8.8 --dns=8.8.4.4 -t myproject-build -f angularProject/Dockerfile .'
                     echo 'Docker Image Created Suceessfully'
                 }
             }
