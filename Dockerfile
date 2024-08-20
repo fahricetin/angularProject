@@ -10,6 +10,7 @@ WORKDIR /dist/src/app
 COPY package.json .
 # Run command in Virtual directory
 RUN npm cache clean --force
+RUN npm config set registry http://registry.npmjs.org/
 RUN npm config set strict-ssl false
 RUN npm install --verbose
 # Copy files from local machine to virtual directory in docker image
