@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        DOCKERHUB_USERNAME = 'fahricetin'
+        DOCKERHUB_PASSWORD = 'dckr_pat_TQptaY4vQrGFcJ_6gyeIDpKDXBw'
+    }
     stages {
         stage('Build') {
             steps {
@@ -49,6 +53,17 @@ pipeline {
 
                     // Run the Docker image and deploy the application
                     sh 'docker run -d -p 80:80 --name myproject-container myproject-build'
+                }
+            }
+        }
+      
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    echo 'Pushing Docker Image to Docker Hub'
+                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                    sh 'docker tag myproject-build $DOCKERHUB_USERNAME/myproject-build:latest'
+                    sh 'docker push $DOCKERHUB_USERNAME/myproject-build:latest'
                 }
             }
         }
