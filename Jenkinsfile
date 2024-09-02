@@ -1,6 +1,8 @@
 pipeline {
     agent any
     environment {
+        // jenkins Credebtial Use
+        //DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         DOCKERHUB_USERNAME = 'fahricetin'
         DOCKERHUB_PASSWORD = 'dckr_pat_TQptaY4vQrGFcJ_6gyeIDpKDXBw'
     }
@@ -61,6 +63,10 @@ pipeline {
             steps {
                 script {
                     echo 'Pushing Docker Image to Docker Hub'
+                    // jenkins Credentials Use
+                    //sh 'echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin'
+                    //sh 'docker tag myproject-build ${DOCKERHUB_CREDENTIALS_USR}/myproject-build:latest'
+                    //sh 'docker push ${DOCKERHUB_CREDENTIALS_USR}/myproject-build:latest'
                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
                     sh 'docker tag myproject-build $DOCKERHUB_USERNAME/myproject-build:latest'
                     sh 'docker push $DOCKERHUB_USERNAME/myproject-build:latest'
