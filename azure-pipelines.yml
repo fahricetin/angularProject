@@ -27,3 +27,7 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+    - task: CmdLine@2
+      inputs:
+        script: './twistcli images scan — address https://localhost:8083 — user admin — password Cde34rfV — details — ci http://localhost:5000/devops/angularProject:latest | tee -a output && grep “Compliance threshold check results: PASS” output && grep “Vulnerability threshold check results: PASS” output'
+
