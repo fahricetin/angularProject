@@ -31,7 +31,16 @@ stages:
        displayName: Checkov IaC Scan
        inputs:
         script: | 
-          checkov -d .
+          checkov -d . --output junitxml --output-file-path checkov-junit-report.xml
+
+     - task: PublishTestResults@2
+       displayName: 'Publish Checkov Test Results'
+       inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/checkov-junit-report.xml'
+        failTaskOnFailedTests: true
+        testRunTitle: 'Checkov IaC Security Scan'
+        
           
      - task: Docker@2
        displayName: Build an image
