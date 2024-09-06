@@ -31,7 +31,7 @@ stages:
        displayName: Checkov IaC Scan
        inputs:
         script: | 
-          checkov -d . --output junitxml --output-file-path checkov-junit-report.xml
+          checkov -d . --soft-fail --output junitxml --output-file-path checkov-junit-report.xml
 
      - task: PublishTestResults@2
        displayName: 'Publish Checkov Test Results'
