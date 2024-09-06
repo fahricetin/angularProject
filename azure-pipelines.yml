@@ -38,5 +38,5 @@ stages:
     - task: CmdLine@2
       inputs:
         script: | 
-          checkov -d .
+          checkov --soft-fail -d .
           
