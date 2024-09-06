@@ -32,6 +32,7 @@ stages:
        inputs:
         script: | 
           checkov -d . --soft-fail --output junitxml --output-file-path checkov-junit-report.xml
+          chmod 755 checkov-junit-report.xml  # Ensure the file has correct permissions
 
      - task: PublishTestResults@2
        displayName: 'Publish Checkov Test Results'
