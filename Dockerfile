@@ -27,6 +27,9 @@ COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 RUN sed -i.bak 's/^user/#user/' /etc/nginx/nginx.conf
 RUN sed -i.bak 's/listen\(.*\)80;/listen 8080;/' /etc/nginx/conf.d/default.conf
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
+
+HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost:8080 || exit 1
 # Exposing a port, here it means that inside the container 
 # the app will be using Port 8080 while running
 EXPOSE 8080
+
