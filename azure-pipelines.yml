@@ -21,24 +21,22 @@ stages:
       vmImage: ubuntu-latest
     steps:
      - task: CmdLine@2
-      displayName: Install Checkov for IaC Scan
-      inputs:
-        script: |
-          python -m pip install --upgrade pip
-          pip install checkov
+       displayName: Install Checkov for IaC Scan
+       inputs:
+          script: |
+            python -m pip install --upgrade pip
+            pip install checkov
       
-    - task: CmdLine@2
-      displayName: Checkov IaC Scan
-      inputs:
+     - task: CmdLine@2
+       displayName: Checkov IaC Scan
+       inputs:
         script: | 
           checkov -d .
           
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
+     - task: Docker@2
+       displayName: Build an image
+       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-
-          
