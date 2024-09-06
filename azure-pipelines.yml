@@ -3,8 +3,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
-
+//- main
+- none
 resources:
 - repo: self
 
@@ -28,6 +28,7 @@ stages:
         tags: |
           $(tag)
     - task: CmdLine@2
+      displayName: Install Checkov
       inputs:
         script: |
           python -m pip install --upgrade pip
@@ -36,6 +37,7 @@ stages:
           
 
     - task: CmdLine@2
+      displayName: Checkov Scan
       inputs:
         script: | 
           checkov --soft-fail -d .
