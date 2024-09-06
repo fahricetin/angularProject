@@ -29,5 +29,8 @@ stages:
           $(tag)
     - task: CmdLine@2
       inputs:
-        script: 'C:\Users\baradm\twistcli.exe images scan — address https://localhost:8083 — user admin — password Cde34rfV — details — ci http://localhost:5000/devops/angularProject:latest | tee -a output && grep “Compliance threshold check results: PASS” output && grep “Vulnerability threshold check results: PASS” output'
-
+        script: 'curl --progress-bar -L -k --header "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJyb2xlUGVybXMiOltbMjU1LDI1NSwyNTUsMjU1LDI1NSw5NV0sWzI1NSwyNTUsMjU1LDI1NSwyNTUsOTVdXSwicGVybWlzc2lvbnMiOlt7InByb2plY3QiOiJDZW50cmFsIENvbnNvbGUifV0sInNlc3Npb25UaW1lb3V0U2VjIjoxODAwLCJpc3MiOiJ0d2lzdGxvY2siLCJleHAiOjE3MjU2MDQzODV9.TSxNtcfDDn79qLztvs-b4MHuTsmT1vc3-d2q8qw4TzY" https://localhost:8083/api/v1/util/twistcli > twistcli; chmod a+x twistcli'
+        
+    - task: CmdLine@2
+      inputs:
+        script: 'twistcli images scan --containerized --address https://localhost:8083 --user admin --password Cde34rfV --details --ci http://localhost:5000/devops/angularProject:latest | tee -a output && grep "Compliance threshold check results: PASS" output && grep "Vulnerability threshold check results: PASS" output'
