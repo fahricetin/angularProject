@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## To browse project il yo use nginx copy commands in Dockerfile
 
-'http://localhost:<LISTEN_PORT>/browser/index.html'
+`http://localhost:<LISTEN_PORT>/browser/index.html`
