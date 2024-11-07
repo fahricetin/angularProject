@@ -4,7 +4,7 @@ pipeline {
         // jenkins Credebtial Use
         //DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         DOCKERHUB_USERNAME = 'fahricetin'
-        DOCKERHUB_PASSWORD = 'dckr_pat_TQptaY4vQrGFcJ_6gyeIDpKDXBw'
+        DOCKERHUB_PASSWORD = '${DOCKERHUB_PASSWORD}'
     }
     stages {
         stage('Build') {
